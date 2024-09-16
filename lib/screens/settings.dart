@@ -5,14 +5,14 @@ import 'package:aero_harvest/kWidgets/appbar.dart';
 import 'package:aero_harvest/kWidgets/row_container.dart';
 import 'package:aero_harvest/utils/font_style.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SettingsPageState extends State<SettingsPage> {
   TextEditingController ipEnter = TextEditingController();
   TextEditingController stableVal = TextEditingController();
   TextEditingController powerSave = TextEditingController();
@@ -65,30 +65,30 @@ class _HomePageState extends State<HomePage> {
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          Builder(
-                            builder: (BuildContext context) {
-                              return GestureDetector(
-                                onTap: () {
-                                  CoustomBottomSheet(
-                                    context: context,
-                                    widget: CoustomInputWidget(
-                                      controller: ipEnter,
-                                      hintText: "Enter ip address",
-                                      width: 300,
-                                      borderColor: Color(0xFFDDDDDD),
-                                    ),
-                                  ).bottomSheet();
-                                },
-                                child: RowContainer(
-                                  text: "IP Address",
-                                  child: Text(
-                                    "192.166.12.5",
-                                    style: AppStyle().defualtText1,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          // Builder(
+                          //   builder: (BuildContext context) {
+                          //     return GestureDetector(
+                          //       onTap: () {
+                          //         CoustomBottomSheet(
+                          //           context: context,
+                          //           widget: CoustomInputWidget(
+                          //             controller: ipEnter,
+                          //             hintText: "Enter ip address",
+                          //             width: 300,
+                          //             borderColor: const Color(0xFFDDDDDD),
+                          //           ),
+                          //         ).bottomSheet();
+                          //       },
+                          //       child: RowContainer(
+                          //         text: "IP Address",
+                          //         child: Text(
+                          //           "192.166.12.5",
+                          //           style: AppStyle().defualtText1,
+                          //         ),
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
                           RowContainer(
                             text: "Sound",
                             child: Switch(
@@ -111,58 +111,54 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                           ),
-                          Builder(
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: (){
-                                  CoustomBottomSheet(
-                                        context: context,
-                                        widget: CoustomInputWidget(
-                                          controller: stableVal,
-                                          hintText: "Stable hovering ",
-                                          width: 300,
-                                          borderColor: Color(0xFFDDDDDD),
-                                        ),
-                                      ).bottomSheet();
-                                },
-                                child: RowContainer(
-                                  text: "Stable Hovering",
-                                  child: Text(
-                                    "58 S",
-                                    style: AppStyle().defualtText1,
+                          Builder(builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                CoustomBottomSheet(
+                                  context: context,
+                                  widget: CoustomInputWidget(
+                                    controller: stableVal,
+                                    hintText: "Stable hovering ",
+                                    width: 300,
+                                    borderColor: const Color(0xFFDDDDDD),
                                   ),
+                                ).bottomSheet();
+                              },
+                              child: RowContainer(
+                                text: "Stable Hovering",
+                                child: Text(
+                                  "58 S",
+                                  style: AppStyle().defualtText1,
                                 ),
-                              );
-                            }
-                          ),
-                          Builder(
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: (){
-                                  CoustomBottomSheet(
-                                        context: context,
-                                        widget: CoustomInputWidget(
-                                          controller: powerSave,
-                                          hintText: "Power save",
-                                          width: 300,
-                                          borderColor: Color(0xFFDDDDDD),
-                                        ),
-                                      ).bottomSheet();
-                                },
-                                child: RowContainer(
-                                  text: "Power Save",
-                                  child: Text(
-                                    "20 %",
-                                    style: AppStyle().defualtText1,
+                              ),
+                            );
+                          }),
+                          Builder(builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                CoustomBottomSheet(
+                                  context: context,
+                                  widget: CoustomInputWidget(
+                                    controller: powerSave,
+                                    hintText: "Power save",
+                                    width: 300,
+                                    borderColor: const Color(0xFFDDDDDD),
                                   ),
+                                ).bottomSheet();
+                              },
+                              child: RowContainer(
+                                text: "Power Save",
+                                child: Text(
+                                  "20 %",
+                                  style: AppStyle().defualtText1,
                                 ),
-                              );
-                            }
-                          ),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
-                    SingleChildScrollView(
+                    const SingleChildScrollView(
                       child: Column(
                         children: [
                           RowContainer(
@@ -179,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

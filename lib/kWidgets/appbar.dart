@@ -28,9 +28,14 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.02,
-            child: const Icon(
-              Icons.arrow_back,
-              size: 28,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                size: 28,
+              ),
             ),
           ),
           SizedBox(
