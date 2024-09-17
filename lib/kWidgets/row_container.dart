@@ -25,19 +25,18 @@ class _RowContainerState extends State<RowContainer> {
           color: AppColors().mainWhite,
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              width: 12,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Text(
-                widget.text,
-                style: AppStyle().defualtText1,
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: SizedBox(
+                child: Text(
+                  widget.text,
+                  style: AppStyle().defualtText1,
+                ),
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.4,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.center,

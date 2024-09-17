@@ -3,14 +3,15 @@ import 'package:aero_harvest/utils/font_style.dart';
 import 'package:coustom_flutter_widgets/page_animation.dart';
 import 'package:flutter/material.dart';
 
-class InfoBar extends StatefulWidget {
-  const InfoBar({super.key});
+class DetailsBar extends StatefulWidget {
+  final int? throt;
+  const DetailsBar({super.key,   this.throt});
 
   @override
-  State<InfoBar> createState() => _InfoBarState();
+  State<DetailsBar> createState() => _DetailsBarState();
 }
 
-class _InfoBarState extends State<InfoBar> {
+class _DetailsBarState extends State<DetailsBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +33,7 @@ class _InfoBarState extends State<InfoBar> {
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Throt : 9.0",
+                    "Throt : ${widget.throt??0}",
                     style: AppStyle().defualtText1,
                   ),
                   const SizedBox(width: 22),

@@ -1,5 +1,3 @@
-import 'package:aero_harvest/screens/popup_window.dart';
-import 'package:coustom_flutter_widgets/input_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:aero_harvest/kWidgets/appbar.dart';
 import 'package:aero_harvest/kWidgets/row_container.dart';
@@ -31,6 +29,8 @@ class _SettingsPageState extends State<SettingsPage> {
       });
     });
   }
+
+  double saving = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -65,96 +65,77 @@ class _SettingsPageState extends State<SettingsPage> {
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          // Builder(
-                          //   builder: (BuildContext context) {
-                          //     return GestureDetector(
-                          //       onTap: () {
-                          //         CoustomBottomSheet(
-                          //           context: context,
-                          //           widget: CoustomInputWidget(
-                          //             controller: ipEnter,
-                          //             hintText: "Enter ip address",
-                          //             width: 300,
-                          //             borderColor: const Color(0xFFDDDDDD),
-                          //           ),
-                          //         ).bottomSheet();
-                          //       },
-                          //       child: RowContainer(
-                          //         text: "IP Address",
-                          //         child: Text(
-                          //           "192.166.12.5",
-                          //           style: AppStyle().defualtText1,
-                          //         ),
-                          //       ),
-                          //     );
-                          //   },
-                          // ),
                           RowContainer(
                             text: "Sound",
-                            child: Switch(
-                              value: isSound,
-                              onChanged: (value) {
-                                setState(() {
-                                  isSound = value;
-                                });
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 18),
+                              child: Switch(
+                                value: isSound,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isSound = value;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                           RowContainer(
                             text: "Vibration",
-                            child: Switch(
-                              value: isVibrate,
-                              onChanged: (value) {
-                                setState(() {
-                                  isVibrate = value;
-                                });
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 18),
+                              child: Switch(
+                                value: isVibrate,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isVibrate = value;
+                                  });
+                                },
+                              ),
                             ),
                           ),
-                          Builder(builder: (context) {
-                            return GestureDetector(
-                              onTap: () {
-                                CoustomBottomSheet(
-                                  context: context,
-                                  widget: CoustomInputWidget(
-                                    controller: stableVal,
-                                    hintText: "Stable hovering ",
-                                    width: 300,
-                                    borderColor: const Color(0xFFDDDDDD),
-                                  ),
-                                ).bottomSheet();
-                              },
-                              child: RowContainer(
-                                text: "Stable Hovering",
-                                child: Text(
-                                  "58 S",
+                          RowContainer(
+                            text: "Stable Hovering",
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 25),
+                              child: Text(
+                                "58 S",
+                                style: AppStyle().defualtText1,
+                              ),
+                            ),
+                          ),
+                          RowContainer(
+                            text: "Power Save",
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    if (saving != 0) {
+                                      setState(() {
+                                        saving -= 10;
+                                      });
+                                    }
+                                  },
+                                  child: Icon(Icons.arrow_circle_left_outlined),
+                                ),
+                                Text(
+                                  "${saving.toInt()}%",
                                   style: AppStyle().defualtText1,
                                 ),
-                              ),
-                            );
-                          }),
-                          Builder(builder: (context) {
-                            return GestureDetector(
-                              onTap: () {
-                                CoustomBottomSheet(
-                                  context: context,
-                                  widget: CoustomInputWidget(
-                                    controller: powerSave,
-                                    hintText: "Power save",
-                                    width: 300,
-                                    borderColor: const Color(0xFFDDDDDD),
-                                  ),
-                                ).bottomSheet();
-                              },
-                              child: RowContainer(
-                                text: "Power Save",
-                                child: Text(
-                                  "20 %",
-                                  style: AppStyle().defualtText1,
+                                TextButton(
+                                  onPressed: () {
+                                    if (saving != 100) {
+                                      setState(() {
+                                        saving += 10;
+                                      });
+                                    }
+                                  },
+                                  child:
+                                      Icon(Icons.arrow_circle_right_outlined),
                                 ),
-                              ),
-                            );
-                          }),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
