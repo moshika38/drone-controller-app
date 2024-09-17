@@ -1,4 +1,5 @@
 import 'package:aero_harvest/data/consistance.dart';
+import 'package:aero_harvest/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:aero_harvest/kWidgets/appbar.dart';
 import 'package:aero_harvest/kWidgets/row_container.dart';
@@ -15,29 +16,29 @@ class _SettingsPageState extends State<SettingsPage> {
   PageController pageController = PageController();
   int currentPage = 0;
 
-  bool isSound = true;
   ApppConsistance consistance = ApppConsistance();
+  bool isSound = true;
+  double saving = 20;
 
-   Future<void> load() async {
+  Future<void> load() async {
     bool soundValue = await consistance.loadSound();
-
+    int battery = await consistance.getPowerSaving();
     setState(() {
       isSound = soundValue;
+      saving = battery.toDouble();
     });
   }
 
   @override
   void initState() {
     super.initState();
-      load();
+    load();
     pageController.addListener(() {
       setState(() {
         currentPage = pageController.page?.round() ?? 0;
       });
     });
   }
-
-  double saving = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -79,21 +80,9 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: Switch(
                                 value: isSound,
                                 onChanged: (value) {
-                                
                                   ApppConsistance().saveSound(value);
-                                    load();
-                                
+                                  load();
                                 },
-                              ),
-                            ),
-                          ),
-                          RowContainer(
-                            text: "Stable Hovering",
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 25),
-                              child: Text(
-                                "58 S",
-                                style: AppStyle().defualtText1,
                               ),
                             ),
                           ),
@@ -107,10 +96,14 @@ class _SettingsPageState extends State<SettingsPage> {
                                     if (saving != 0) {
                                       setState(() {
                                         saving -= 10;
+                                        consistance.powerSaving(saving.toInt());
                                       });
                                     }
                                   },
-                                  child: Icon(Icons.arrow_circle_left_outlined),
+                                  child: Icon(
+                                    Icons.arrow_circle_left_outlined,
+                                    color: AppColors().offWhite,
+                                  ),
                                 ),
                                 Text(
                                   "${saving.toInt()}%",
@@ -121,11 +114,14 @@ class _SettingsPageState extends State<SettingsPage> {
                                     if (saving != 100) {
                                       setState(() {
                                         saving += 10;
+                                        consistance.powerSaving(saving.toInt());
                                       });
                                     }
                                   },
-                                  child:
-                                      Icon(Icons.arrow_circle_right_outlined),
+                                  child: Icon(
+                                    Icons.arrow_circle_right_outlined,
+                                    color: AppColors().offWhite,
+                                  ),
                                 ),
                               ],
                             ),

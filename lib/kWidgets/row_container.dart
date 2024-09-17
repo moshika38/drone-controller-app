@@ -22,7 +22,7 @@ class _RowContainerState extends State<RowContainer> {
         height: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: AppColors().mainWhite,
+          color: AppColors().controllerBgColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

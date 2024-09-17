@@ -5,7 +5,8 @@ class AppColors {
   final Color mainBlack = const Color(0xff000000);
   final Color offWhite = const Color(0xffFAF9F6);
   final Color mainWhite = const Color(0xffffffff);
-  
+  final Color activeColor = const Color.fromARGB(255, 2, 201, 85);
+
   final Color controllerBgColor = const Color.fromARGB(255, 89, 89, 89);
   final Color controllerColor = const Color.fromARGB(255, 235, 235, 236);
 }

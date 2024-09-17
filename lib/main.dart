@@ -9,7 +9,7 @@ void main() {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]).then((_) {
-    runApp(MyApp());
+    runApp(const MyApp());
   });
 }
 
@@ -19,10 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       
       debugShowCheckedModeBanner: false,
-      theme: AppThem().AppThemData,
-      home: Homepage(),
+      theme: ThemeData.dark(),
+      home: const Homepage(),
     );
   }
 }

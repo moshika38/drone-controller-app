@@ -1,7 +1,10 @@
 import 'package:aero_harvest/data/consistance.dart';
 import 'package:aero_harvest/kWidgets/info_bar.dart';
 import 'package:aero_harvest/utils/colors.dart';
+import 'package:aero_harvest/utils/font_style.dart';
+import 'package:coustom_flutter_widgets/popup_windwo.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -16,6 +19,8 @@ class _HomepageState extends State<Homepage> {
   double _btnTwoHorizontal = 0;
 
   double bluVal = 100;
+
+  int power = 0;
 
   int getRow(double val) {
     int row = val.toInt();
@@ -44,9 +49,12 @@ class _HomepageState extends State<Homepage> {
 
   Future<void> load() async {
     bool soundValue = await consistance.loadSound();
-
+    int battrySave = await consistance.getPowerSaving();
+    int pw = await consistance.loadPower();
+    print("Battery Saving = $battrySave");
     setState(() {
       isSound = soundValue;
+      power = pw;
     });
   }
 
@@ -55,7 +63,6 @@ class _HomepageState extends State<Homepage> {
     super.initState();
     load();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +78,119 @@ class _HomepageState extends State<Homepage> {
             ),
 
             //left button
+
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: AppColors().controllerBgColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.wifi_outlined,
+                            size: 26,
+                          ),
+                          const SizedBox(width: 15),
+                          IconButton(
+                            onPressed: () {
+                              if (power == 0) {
+                                ApppConsistance().savePower(1);
+                                load();
+                              } else {
+                                CoustomPopupWindow(
+                                  borderRadius: 30,
+                                  bgColor: AppColors().controllerBgColor,
+                                  content: Text(
+                                    "Are you sure ?",
+                                    style: AppStyle().defualtText1,
+                                  ),
+                                  actionButtons: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        "No ",
+                                        style: AppStyle().defualtText1,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        ApppConsistance().savePower(0);
+                                        load();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        "Yes ",
+                                        style: AppStyle().defualtText1,
+                                      ),
+                                    ),
+                                  ],
+                                ).showPopup(context);
+                              }
+                            },
+                            icon: Icon(
+                              Icons.offline_bolt,
+                              size: 26,
+                              color: power == 1
+                                  ? AppColors().activeColor
+                                  : AppColors().offWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_btnOnePosition < 60) {
+                            setState(() {
+                              _btnOnePosition += 1;
+                              print(_btnOnePosition);
+                            });
+                          }
+                        },
+                        child: FaIcon(
+                          FontAwesomeIcons.minus,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_btnOnePosition > -60) {
+                            setState(() {
+                              _btnOnePosition += -1;
+                              print(_btnOnePosition);
+                            });
+                          }
+                        },
+                        child: FaIcon(FontAwesomeIcons.add),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
 
             Padding(
               padding: const EdgeInsets.only(left: 30, bottom: 25),
@@ -88,6 +208,7 @@ class _HomepageState extends State<Homepage> {
                       onVerticalDragUpdate: (details) {
                         setState(() {
                           _btnOnePosition += details.delta.dy;
+
                           if (_btnOnePosition > -60 || _btnOnePosition < 60) {
                             getValue(_btnOnePosition);
                           }

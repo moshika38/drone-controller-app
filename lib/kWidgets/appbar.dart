@@ -34,7 +34,7 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Homepage(),
+                    builder: (context) => const Homepage(),
                   ),
                 );
               },
@@ -65,7 +65,7 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
                     style: AppStyle().defualtText1.copyWith(
                           color: widget.currentPage == 0
                               ? AppColors().mainBlue
-                              : AppColors().mainBlack,
+                              : AppColors().offWhite,
                         ),
                   ),
                 ),
@@ -78,7 +78,7 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
                     style: AppStyle().defualtText1.copyWith(
                           color: widget.currentPage == 1
                               ? AppColors().mainBlue
-                              : AppColors().mainBlack,
+                              : AppColors().offWhite,
                         ),
                   ),
                 ),
