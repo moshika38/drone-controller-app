@@ -37,4 +37,17 @@ class ApppConsistance {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getInt("battery") ?? 20;
   }
+
+
+  // savedSpeed
+  Future<void> saveSpeed(double int) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setDouble("speed", int);
+  }
+
+  // loadSpeed
+  Future<double> getSpeed() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getDouble("speed") ?? 20;
+  }
 }

@@ -1,9 +1,7 @@
 import 'package:aero_harvest/data/consistance.dart';
 import 'package:aero_harvest/screens/settings.dart';
-import 'package:aero_harvest/utils/colors.dart';
 import 'package:aero_harvest/utils/font_style.dart';
 import 'package:coustom_flutter_widgets/page_animation.dart';
-import 'package:coustom_flutter_widgets/popup_windwo.dart';
 import 'package:flutter/material.dart';
 
 class DetailsBar extends StatefulWidget {

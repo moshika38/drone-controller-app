@@ -17,10 +17,16 @@ class _HomepageState extends State<Homepage> {
   double _btnOnePosition = 60;
   double _btnTwoVartical = 0;
   double _btnTwoHorizontal = 0;
-
   double bluVal = 100;
-
   int power = 0;
+
+  Future<void> checkSpeed() async {
+    double savedSpeed = await consistance.getSpeed();
+    setState(() {
+      _btnOnePosition = savedSpeed;
+      
+    });
+  }
 
   int getRow(double val) {
     int row = val.toInt();
@@ -41,6 +47,7 @@ class _HomepageState extends State<Homepage> {
       speed = 220;
     }
     int newSpeed = speed.toInt();
+    ApppConsistance().saveSpeed(val);
     return newSpeed;
   }
 
@@ -51,6 +58,7 @@ class _HomepageState extends State<Homepage> {
     bool soundValue = await consistance.loadSound();
     int battrySave = await consistance.getPowerSaving();
     int pw = await consistance.loadPower();
+
     print("Battery Saving = $battrySave");
     setState(() {
       isSound = soundValue;
@@ -62,6 +70,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     load();
+    checkSpeed();
   }
 
   @override
