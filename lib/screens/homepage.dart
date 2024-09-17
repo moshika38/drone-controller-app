@@ -60,7 +60,7 @@ class _HomepageState extends State<Homepage> {
                   width: 220,
                   height: 220,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: AppColors().controllerBgColor,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -87,7 +87,7 @@ class _HomepageState extends State<Homepage> {
                           width: 100,
                           height: 100,
                           decoration: BoxDecoration(
-                            color: AppColors().mainBlack,
+                            color: AppColors().controllerColor,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -108,7 +108,7 @@ class _HomepageState extends State<Homepage> {
                   width: 220,
                   height: 220,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: AppColors().controllerBgColor,
                     shape: BoxShape.circle,
                   ),
                   child: Align(
@@ -144,7 +144,7 @@ class _HomepageState extends State<Homepage> {
                           width: 100,
                           height: 100,
                           decoration: BoxDecoration(
-                            color: AppColors().mainBlack,
+                            color: AppColors().controllerColor,
                             shape: BoxShape.circle,
                           ),
                         ),
