@@ -11,7 +11,20 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   double _btnOnePosition = 60;
+  double _btnTwoVartical = 0;
+  double _btnTwoHorizontal = 0;
+
   double bluVal = 100;
+
+  int getRow(double val) {
+    int row = val.toInt();
+    return row;
+  }
+
+  int getPich(double val) {
+    int pich = val.toInt();
+    return pich;
+  }
 
   int getValue(val) {
     double speed = 60 - val + 100;
@@ -33,6 +46,8 @@ class _HomepageState extends State<Homepage> {
           children: [
             DetailsBar(
               throt: getValue(_btnOnePosition),
+              row: getRow(_btnTwoHorizontal),
+              pich: getPich(_btnTwoVartical),
             ),
 
             //left button
@@ -96,13 +111,35 @@ class _HomepageState extends State<Homepage> {
                     color: Colors.grey,
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: Align(
+                    alignment: Alignment.center,
                     child: GestureDetector(
                       onVerticalDragUpdate: (details) {
-                        // up down
+                        setState(() {
+                          _btnTwoVartical += details.delta.dy;
+                          if (_btnTwoVartical < -60) _btnTwoVartical = -60;
+                          if (_btnTwoVartical > 60) _btnTwoVartical = 60;
+                        });
+                      },
+                      onHorizontalDragUpdate: (details) {
+                        setState(() {
+                          _btnTwoHorizontal += details.delta.dx;
+                          if (_btnTwoHorizontal < -60) _btnTwoHorizontal = -60;
+                          if (_btnTwoHorizontal > 60) _btnTwoHorizontal = 60;
+                        });
+                      },
+                      onVerticalDragEnd: (details) {
+                        setState(() {
+                          _btnTwoVartical = 0;
+                        });
+                      },
+                      onHorizontalDragEnd: (details) {
+                        setState(() {
+                          _btnTwoHorizontal = 0;
+                        });
                       },
                       child: Transform.translate(
-                        offset: Offset(0, _btnOnePosition),
+                        offset: Offset(_btnTwoHorizontal, _btnTwoVartical),
                         child: Container(
                           width: 100,
                           height: 100,

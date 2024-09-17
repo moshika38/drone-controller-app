@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class DetailsBar extends StatefulWidget {
   final int? throt;
-  const DetailsBar({super.key,   this.throt});
+  final int? row;
+  final int? pich;
+  const DetailsBar({super.key,  this.throt, this.row, this.pich});
 
   @override
   State<DetailsBar> createState() => _DetailsBarState();
@@ -38,12 +40,12 @@ class _DetailsBarState extends State<DetailsBar> {
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Row : 9.0",
+                    "Row : ${widget.row??0}",
                     style: AppStyle().defualtText1,
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Pich : 9.0",
+                    "Pich : ${widget.pich??0}",
                     style: AppStyle().defualtText1,
                   ),
                 ],
