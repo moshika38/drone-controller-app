@@ -1,3 +1,4 @@
+import 'package:aero_harvest/data/consistance.dart';
 import 'package:flutter/material.dart';
 import 'package:aero_harvest/kWidgets/appbar.dart';
 import 'package:aero_harvest/kWidgets/row_container.dart';
@@ -11,18 +12,24 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  TextEditingController ipEnter = TextEditingController();
-  TextEditingController stableVal = TextEditingController();
-  TextEditingController powerSave = TextEditingController();
   PageController pageController = PageController();
-  bool isSound = true;
-  bool isVibrate = true;
   int currentPage = 0;
+
+  bool isSound = true;
+  ApppConsistance consistance = ApppConsistance();
+
+   Future<void> load() async {
+    bool soundValue = await consistance.loadSound();
+
+    setState(() {
+      isSound = soundValue;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-
+      load();
     pageController.addListener(() {
       setState(() {
         currentPage = pageController.page?.round() ?? 0;
@@ -72,23 +79,10 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: Switch(
                                 value: isSound,
                                 onChanged: (value) {
-                                  setState(() {
-                                    isSound = value;
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                          RowContainer(
-                            text: "Vibration",
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 18),
-                              child: Switch(
-                                value: isVibrate,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isVibrate = value;
-                                  });
+                                
+                                  ApppConsistance().saveSound(value);
+                                    load();
+                                
                                 },
                               ),
                             ),

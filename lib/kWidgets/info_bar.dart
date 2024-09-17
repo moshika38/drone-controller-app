@@ -7,7 +7,8 @@ class DetailsBar extends StatefulWidget {
   final int? throt;
   final int? row;
   final int? pich;
-  const DetailsBar({super.key,  this.throt, this.row, this.pich});
+  final bool isSound;
+  const DetailsBar({super.key, this.throt, this.row, this.pich, required this.isSound});
 
   @override
   State<DetailsBar> createState() => _DetailsBarState();
@@ -35,17 +36,17 @@ class _DetailsBarState extends State<DetailsBar> {
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Throt : ${widget.throt??0}",
+                    "Throt : ${widget.throt ?? 0}",
                     style: AppStyle().defualtText1,
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Row : ${widget.row??0}",
+                    "Row : ${widget.row ?? 0}",
                     style: AppStyle().defualtText1,
                   ),
                   const SizedBox(width: 22),
                   Text(
-                    "Pich : ${widget.pich??0}",
+                    "Pich : ${widget.pich ?? 0}",
                     style: AppStyle().defualtText1,
                   ),
                 ],
@@ -70,8 +71,8 @@ class _DetailsBarState extends State<DetailsBar> {
                     size: 25,
                   ),
                   const SizedBox(width: 15),
-                  const Icon(
-                    Icons.volume_up_rounded,
+                  Icon(
+                    widget.isSound ? Icons.volume_up_rounded : Icons.volume_off,
                     size: 27,
                   ),
                   const SizedBox(width: 15),

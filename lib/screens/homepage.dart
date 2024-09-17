@@ -1,3 +1,4 @@
+import 'package:aero_harvest/data/consistance.dart';
 import 'package:aero_harvest/kWidgets/info_bar.dart';
 import 'package:aero_harvest/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,24 @@ class _HomepageState extends State<Homepage> {
     return newSpeed;
   }
 
+  bool isSound = true;
+  ApppConsistance consistance = ApppConsistance();
+
+  Future<void> load() async {
+    bool soundValue = await consistance.loadSound();
+
+    setState(() {
+      isSound = soundValue;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,6 +64,7 @@ class _HomepageState extends State<Homepage> {
         body: Stack(
           children: [
             DetailsBar(
+              isSound: isSound,
               throt: getValue(_btnOnePosition),
               row: getRow(_btnTwoHorizontal),
               pich: getPich(_btnTwoVartical),

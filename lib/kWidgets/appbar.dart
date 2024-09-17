@@ -1,3 +1,4 @@
+import 'package:aero_harvest/screens/homepage.dart';
 import 'package:aero_harvest/utils/colors.dart';
 import 'package:aero_harvest/utils/font_style.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,12 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
             width: MediaQuery.of(context).size.width * 0.02,
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Homepage(),
+                  ),
+                );
               },
               child: const Icon(
                 Icons.arrow_back,
