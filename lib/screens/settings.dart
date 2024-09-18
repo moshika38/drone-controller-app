@@ -50,6 +50,10 @@ class _SettingsPageState extends State<SettingsPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CoustomAppbar(
+                scan: () {
+                  // call blutooth scan function
+                 
+                },
                 currentPage: currentPage,
                 clickBtnOne: () {
                   pageController.animateToPage(

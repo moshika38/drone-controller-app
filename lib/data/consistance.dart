@@ -48,6 +48,6 @@ class ApppConsistance {
   // loadSpeed
   Future<double> getSpeed() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return preferences.getDouble("speed") ?? 20;
+    return preferences.getDouble("speed") ?? 0;
   }
 }

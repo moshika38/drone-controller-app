@@ -83,7 +83,7 @@ class _HomepageState extends State<Homepage> {
               isSound: isSound,
               throt: getValue(_btnOnePosition),
               row: getRow(_btnTwoHorizontal),
-              pich: getPich(_btnTwoVartical),
+              pich: getPich(_btnTwoVartical), 
             ),
 
             //left button
@@ -114,9 +114,12 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 15),
                           IconButton(
                             onPressed: () {
-                              if (power == 0) {
+                               if (power == 0) {
                                 ApppConsistance().savePower(1);
                                 load();
+                                setState(() {
+                                  _btnOnePosition = 60;
+                                });
                               } else {
                                 CoustomPopupWindow(
                                   borderRadius: 30,

@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 class CoustomAppbar extends StatefulWidget {
   final VoidCallback clickBtnOne;
   final VoidCallback clickBtnTwo;
+  final VoidCallback scan;
   final int currentPage;
   const CoustomAppbar({
     super.key,
     required this.clickBtnOne,
     required this.clickBtnTwo,
-    required this.currentPage,
+    required this.currentPage, 
+    required this.scan,
   });
 
   @override
@@ -71,10 +73,10 @@ class _CoustomAppbarState extends State<CoustomAppbar> {
                 ),
                 TextButton(
                   onPressed: () {
-                    widget.clickBtnTwo();
+                    widget.currentPage == 1 ?widget.scan():widget.clickBtnTwo();
                   },
                   child: Text(
-                    "Devices",
+                    widget.currentPage == 1 ? "Refresh" : "Devices",
                     style: AppStyle().defualtText1.copyWith(
                           color: widget.currentPage == 1
                               ? AppColors().mainBlue
