@@ -24,7 +24,6 @@ class _HomepageState extends State<Homepage> {
     double savedSpeed = await consistance.getSpeed();
     setState(() {
       _btnOnePosition = savedSpeed;
-      
     });
   }
 
@@ -83,7 +82,7 @@ class _HomepageState extends State<Homepage> {
               isSound: isSound,
               throt: getValue(_btnOnePosition),
               row: getRow(_btnTwoHorizontal),
-              pich: getPich(_btnTwoVartical), 
+              pich: getPich(_btnTwoVartical),
             ),
 
             //left button
@@ -114,7 +113,9 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 15),
                           IconButton(
                             onPressed: () {
-                               if (power == 0) {
+                              // check if device is connect or not
+                              // if connect.then trun on motors
+                              if (power == 0) {
                                 ApppConsistance().savePower(1);
                                 load();
                                 setState(() {
@@ -124,8 +125,9 @@ class _HomepageState extends State<Homepage> {
                                 CoustomPopupWindow(
                                   borderRadius: 30,
                                   bgColor: AppColors().controllerBgColor,
+                                  title: "Warning !",
                                   content: Text(
-                                    "Are you sure ?",
+                                    "Are you sure turn off ?",
                                     style: AppStyle().defualtText1,
                                   ),
                                   actionButtons: [
