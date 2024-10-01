@@ -50,4 +50,18 @@ class ApppConsistance {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getDouble("speed") ?? 0;
   }
+
+
+
+  // savedSpeed
+  Future<void> saveIsConncet(bool int) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setBool("connect", int);
+  }
+
+  // loadSpeed
+  Future<bool> getIsConnect() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool("connect") ?? false;
+  }
 }

@@ -80,7 +80,7 @@ class _DetailsBarState extends State<DetailsBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     child: Row(
                       children: [
                         // Container(

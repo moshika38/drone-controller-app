@@ -1,6 +1,6 @@
-import 'package:aero_harvest/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:aero_harvest/size_extensiton.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const Homepage(),
+      home: const TestPage(),
+    );
+  }
+}
+
+class TestPage extends StatelessWidget {
+  const TestPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            color: Colors.red,
+          ),
+         2.mph(context),
+          Container(
+            width: 200,
+            height: 200,
+            color: Colors.red,
+          )
+        ],
+      ),
     );
   }
 }
