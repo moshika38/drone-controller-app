@@ -1,16 +1,29 @@
-# aero_harvest
+# Drone Control App
 
-A new Flutter project.
+This Flutter application allows users to control a drone via Bluetooth. It connects to an Arduino board, enabling real-time communication and control over various drone functions.
+
+## Features
+- **Bluetooth Connectivity**: Connects to Arduino for wireless control.
+- **Real-Time Control**: Send signals to control drone movement.
+- **User-Friendly Interface**: Intuitive design for easy navigation and control.
 
 ## Getting Started
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/moshika38/drone-controller-app
+   ```
+2. **Install dependencies**:
+   ```bash
+   flutter pub get
+   ```
+3. **Run the app**:
+   ```bash
+   flutter run
+   ```
 
-This project is a starting point for a Flutter application.
+## Requirements
+- Flutter SDK
+- Arduino board with Bluetooth module
+- Compatible drone hardware
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ 
